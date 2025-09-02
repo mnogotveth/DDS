@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="h4 mb-3">{% if object %}Редактировать{% else %}Создать{% endif %} транзакцию</h1>
+<form method="post" class="row g-3">
+  {% csrf_token %}
+  <div class="col-md-3">{{ form.date.label_tag }}{{ form.date }}</div>
+  <div class="col-md-3">{{ form.status.label_tag }}{{ form.status }}</div>
+  <div class="col-md-3">{{ form.type.label_tag }}{{ form.type }}</div>
+  <div class="col-md-3">{{ form.category.label_tag }}{{ form.category }}</div>
+  <div class="col-md-3">{{ form.subcategory.label_tag }}{{ form.subcategory }}</div>
+  <div class="col-md-3">{{ form.amount.label_tag }}{{ form.amount }}</div>
+  <div class="col-12">{{ form.comment.label_tag }}{{ form.comment }}</div>
+
+  {% if form.non_field_errors %}
+    <div class="col-12">
+      <div class="alert alert-danger">{{ form.non_field_errors }}</div>
+    </div>
+  {% endif %}
+
+  <div class="col-12">
+    <button class="btn btn-primary">Сохранить</button>
+    <a href="{% url 'ui:transaction_list' %}" class="btn btn-outline-secondary">Отмена</a>
+  </div>
+</form>
+{% endblock %}

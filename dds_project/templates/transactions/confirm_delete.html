@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="h4 mb-3">Удалить транзакцию</h1>
+<p>Вы действительно хотите удалить запись от <strong>{{ object.date|date:"d.m.Y" }}</strong> на сумму <strong>{{ object.amount }}</strong>?</p>
+<form method="post">
+  {% csrf_token %}
+  <button class="btn btn-danger">Удалить</button>
+  <a href="{% url 'ui:transaction_list' %}" class="btn btn-outline-secondary">Отмена</a>
+</form>
+{% endblock %}
